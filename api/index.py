@@ -17,15 +17,15 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
 
-        # Parse query parameters
+        # Parse query parameters correctly
         query_components = parse_qs(urlparse(self.path).query)
         names = query_components.get('name', [])
 
-        # Get marks for requested names
+        # Fetch marks (ensure all names are checked)
         marks = [MARKS_DATA.get(name, 0) for name in names]
 
-        # Send response
-        response = json.dumps(marks)
+        # Send response in the correct format
+        response = json.dumps({"marks": marks})
         self.wfile.write(response.encode())
 
     def do_OPTIONS(self):
