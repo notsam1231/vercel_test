@@ -1,1 +1,1 @@
-fastapi
+werkzeug==1.0.1
