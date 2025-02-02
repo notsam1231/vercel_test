@@ -22,10 +22,10 @@ class handler(BaseHTTPRequestHandler):
         names = query_components.get('name', [])
 
         # Get marks for requested names
-        marks = {name: MARKS_DATA.get(name, 0) for name in names}
+        marks = {MARKS_DATA.get(0) for name in names}
 
         # Send response
-        response = json.dumps({"marks": marks})
+        response = json.dumps(marks)
         self.wfile.write(response.encode())
 
     def do_OPTIONS(self):
